@@ -21,6 +21,11 @@ Window
     readonly property string drawerFontColor: "white"
 
     //----------------------------------
+    // signals
+    //----------------------------------
+    signal buttonClick(int btnId);
+
+    //----------------------------------
     // gridSuperButtons
     //----------------------------------
     Grid
@@ -32,12 +37,12 @@ Window
         columns: 2
         rows: 3
 
-        Rectangle { color: "red";    width: gridItemWd; height: width }
-        Rectangle { color: "blue";   width: gridItemWd; height: width }
-        Rectangle { color: "green";  width: gridItemWd; height: width }
-        Rectangle { color: "yellow"; width: gridItemWd; height: width }
-        Rectangle { color: "purple"; width: gridItemWd; height: width }
-        Rectangle { color: "orange"; width: gridItemWd; height: width }
+        SuperButton { color: "red";    buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: "blue";   buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: "green";  buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: "yellow"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: "purple"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: "orange"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
     }
 
     //----------------------------------

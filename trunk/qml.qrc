@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>RoomDrawer.qml</file>
+        <file>SuperButton.qml</file>
     </qresource>
 </RCC>
