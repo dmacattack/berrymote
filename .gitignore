@@ -1,0 +1,7 @@
+# ignore the build directory
+############################
+build/
+
+# ignore the user specific pro file
+###########################
+*.pro.user
