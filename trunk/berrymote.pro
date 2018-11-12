@@ -6,7 +6,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     berrymotemain.cpp \
     qmlgenericobject.cpp \
-    qmlobjectbase.cpp
+    qmlobjectbase.cpp \
+    configparser.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,4 +22,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     berrymotemain.hpp \
     qmlgenericobject.hpp \
-    qmlobjectbase.hpp
+    qmlobjectbase.hpp \
+    configparser.hpp
+
+DISTFILES += \
+    berrymote.json

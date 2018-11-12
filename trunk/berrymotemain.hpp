@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "qmlgenericobject.hpp"
+#include "configparser.hpp"
 
 namespace BERRYMOTE
 {
@@ -26,6 +27,8 @@ private:
     QObject *mpRootObj;
     QmlGenericObject *mpSuperButtonGrid;
     QmlGenericObject *mpSuperButtons[BERRYMOTE::MAX_SUPER_BUTTONS];
+
+    ConfigParser &mConfigParser;
 
 };
 

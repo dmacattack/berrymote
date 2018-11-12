@@ -1,0 +1,50 @@
+{
+    "versionMajor": 1,
+    "versionMinor": 0,
+
+    "rooms":
+    [
+        {
+            "name": "TV Room",
+            "superButtons":
+            [
+                {
+                    "name": "power",
+                    "icon": "\uf011",
+                    "type": "ir",
+                    "payload" : "10101011010"
+                },
+                {
+                    "name": "Fire TV",
+                    "icon": "\uf06d",
+                    "type": "ip",
+                    "payload" : "10101011010"
+                }
+            ]
+        },
+        {
+            "name": "Bedroom",
+            "superButtons":
+            [
+                {
+                    "name": "power",
+                    "icon": "\uf011",
+                    "type": "ir",
+                    "payload" : "10101011010"
+                },
+                {
+                    "name": "Fire TV",
+                    "icon": "\uf011",
+                    "type": "ip",
+                    "payload" : "10101011010"
+                },
+                {
+                    "name": "Fan",
+                    "icon": "\uf72e",
+                    "type": "ir",
+                    "payload" : "10101011010"
+                }
+            ]
+        }
+    ]
+}

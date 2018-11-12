@@ -18,6 +18,7 @@ namespace
 BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 : mpRootObj(pRootObj)
 , mpSuperButtonGrid(NULL)
+, mConfigParser(*new ConfigParser())
 {
     for (int i = 0; i< BERRYMOTE::MAX_SUPER_BUTTONS; i++)
     {
@@ -45,28 +46,35 @@ BerrymoteMain::~BerrymoteMain()
 // init
 void BerrymoteMain::init()
 {
-    // allocate the qml objects
-    mpSuperButtonGrid = new QmlGenericObject(QML_OBJ_SUPERBTNGRID, mpRootObj);
-
-    // allocate the buttons in the grid and assign button ids
-    if (mpSuperButtonGrid != NULL)
+    // init the config parser first
+    if ( mConfigParser.init() )
     {
-        int sz = mpSuperButtonGrid->getQmlObj()->children().size();
+        // allocate the qml objects
+        mpSuperButtonGrid = new QmlGenericObject(QML_OBJ_SUPERBTNGRID, mpRootObj);
 
-        for (int i = 0; i< sz; i++)
+        // allocate the buttons in the grid and assign button ids
+        if (mpSuperButtonGrid != NULL)
         {
-            // the buttons are added by their ID. So for debugging the id provides
-            // a string since the qml isn't discovered by name
-            QObject *pObj = mpSuperButtonGrid->getQmlObj()->children().at(i);
-            int btnId = eBTN_SUPER_BUTTON_OFFSET + i;
-            mpSuperButtons[i] = new QmlGenericObject(QML_OBJ_SUPERBTN, btnId, pObj);
-            mpSuperButtons[i]->setId(btnId);
+            int sz = mpSuperButtonGrid->getQmlObj()->children().size();
+
+            for (int i = 0; i< sz; i++)
+            {
+                // the buttons are added by their ID. So for debugging the id provides
+                // a string since the qml isn't discovered by name
+                QObject *pObj = mpSuperButtonGrid->getQmlObj()->children().at(i);
+                int btnId = eBTN_SUPER_BUTTON_OFFSET + i;
+                mpSuperButtons[i] = new QmlGenericObject(QML_OBJ_SUPERBTN, btnId, pObj);
+                mpSuperButtons[i]->setId(btnId);
+            }
         }
+
+        // connect signals/slots
+        QObject::connect( mpRootObj, SIGNAL(buttonClick(int)), this, SLOT(onButtonClick(int)) );
     }
-
-    // connect signals/slots
-    QObject::connect( mpRootObj, SIGNAL(buttonClick(int)), this, SLOT(onButtonClick(int)) );
-
+    else
+    {
+        qCritical() << "problem with configs";
+    }
 }
 
 // slot callback for button click
