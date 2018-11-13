@@ -67,11 +67,12 @@ void ConfigParser::getRooms()
     for (int i=0; i<sz; i++)
     {
         QJsonObject pObj = roomArray.at(i).toObject();
+
         RoomData *pData = new RoomData(pObj);
         // debug test
-        qDebug() << pData->getName() << pData->getIcon() << pData->getPayload();
+        qDebug() << pData->getString();
 
-        delete pData;
+        //delete pData;
     }
 
 
