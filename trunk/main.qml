@@ -20,6 +20,14 @@ Window
     readonly property string drawerColor: "#E0555555"
     readonly property string drawerFontColor: "white"
 
+    // colors generated from
+    // https://coolors.co/171a21-606572-7988aa-91acea-afc5f7
+    readonly property string colorDkBlue:     "#171A21"
+    readonly property string colorGreyBlue:   "#606572"
+    readonly property string colorMediumBlue: "#7988AA"
+    readonly property string colorBlue:       "#91ACEA"
+    readonly property string colorLightBlue:  "#AFC5F7"
+
     //----------------------------------
     // signals
     //----------------------------------
@@ -37,12 +45,12 @@ Window
         columns: 2
         rows: 3
 
-        SuperButton { color: "red";    buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: "blue";   buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: "green";  buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: "yellow"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: "purple"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: "orange"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf011"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf72e"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf1eb"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
     }
 
     //----------------------------------

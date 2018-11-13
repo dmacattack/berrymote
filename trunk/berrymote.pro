@@ -26,4 +26,5 @@ HEADERS += \
     configparser.hpp
 
 DISTFILES += \
-    berrymote.json
+    berrymote.json \
+    fonts/fontAwesomev5.5.0.otf
