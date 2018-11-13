@@ -21,7 +21,7 @@ namespace
     const char* CFG_FILE = "./berrymote.json";
 
     // json data
-    const char* JSON_PROP_ROOMS = "rooms";
+    const char* JSON_PROP_ROOMS     = "rooms";
     const char* JSON_PROP_VER_MAJOR = "versionMajor";
     const char* JSON_PROP_VER_MINOR = "versionMinor";
 }

@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
+import QtGraphicalEffects 1.0
 
 Window
 {
@@ -7,16 +8,28 @@ Window
     visible: true
     width: 240
     height: 320
-    color: "black"
+
+    RadialGradient
+    {
+        anchors.fill: parent
+        verticalOffset: 100
+        gradient: Gradient
+        {
+            GradientStop { position: 0.0; color: colorGradientStart }
+            GradientStop { position: 0.7; color: colorGradientStop }
+        }
+
+    }
 
     //----------------------------------
     // local properties
     //----------------------------------
-    property int dummyRectWd: 80
-    readonly property int maxDrawerY: rootWindow.height - 20
+    readonly property int drawerClosedHt: 20
+    readonly property int maxDrawerY: rootWindow.height - drawerClosedHt
     readonly property int drawerMiddleThreshold: rootWindow.height * 0.5 // at the 75% mark
     readonly property int maxEasingDuration: 500 // 500 ms
     readonly property int gridItemWd: 80
+    readonly property int gridItemSpacing: 20
     readonly property string drawerColor: "#E0555555"
     readonly property string drawerFontColor: "white"
 
@@ -27,6 +40,9 @@ Window
     readonly property string colorMediumBlue: "#7988AA"
     readonly property string colorBlue:       "#91ACEA"
     readonly property string colorLightBlue:  "#AFC5F7"
+    // bg gradient colors
+    readonly property string colorGradientStart : "#EDFACE"
+    readonly property string colorGradientStop  : "#055F79"
 
     //----------------------------------
     // signals
@@ -40,17 +56,19 @@ Window
     {
         id: gridSuperButtons
         objectName: "gridSuperButtons"
-        anchors.centerIn: parent
-        spacing: 10
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: (rootWindow.height - gridSuperButtons.height - drawerClosedHt)/2
+        spacing: gridItemSpacing
         columns: 2
         rows: 3
 
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf011"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf72e"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf1eb"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { color: colorGreyBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf011"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf72e"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf1eb"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
     }
 
     //----------------------------------

@@ -14,7 +14,7 @@ Item
     property string text: ""
     property var buttonClickFn: undefined
     property int buttonId: -1
-    readonly property int fontSize: 40
+    readonly property int fontSize: 35
 
     // fonts
     FontLoader
