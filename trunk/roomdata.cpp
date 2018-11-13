@@ -11,7 +11,11 @@ namespace
     const char* JSON_PROP_CMD           = "cmd";
 }
 
-// ctor
+/*!
+ * \brief RoomData::RoomData
+ * ctor of the Room data container class. init any sub-objects
+ * \param jObj - json object from the config file containing 1 room
+ */
 RoomData::RoomData(QJsonObject jObj)
 : mName("")
 , mSuperButtons(*new ROOM::SuperButtons() )
@@ -19,7 +23,10 @@ RoomData::RoomData(QJsonObject jObj)
     setData(jObj);
 }
 
-// dtor
+/*!
+ * \brief RoomData::~RoomData
+ * dtor or the Room data class. cleanup and allocated memory
+ */
 RoomData::~RoomData()
 {
     // delete the super buttons
@@ -30,8 +37,10 @@ RoomData::~RoomData()
     delete &mSuperButtons;
 }
 
-// return a string of this room's data
-// its nice for debugging
+/*!
+ * \brief RoomData::getString
+ * \returns a friendly string of this rooms data. its nice for debugging
+ */
 QString RoomData::getString()
 {
     QString str = QString("%1: \n").arg(mName);
@@ -55,7 +64,11 @@ QString RoomData::getString()
     return str;
 }
 
-// set the data of the room from the json object
+/*!
+ * \brief RoomData::setData
+ * Set the data of the room from the json object
+ * \param jObj - json object from the config file containing 1 room
+ */
 void RoomData::setData(QJsonObject jObj)
 {
     // name of this room
@@ -74,11 +87,13 @@ void RoomData::setData(QJsonObject jObj)
         ROOM::tSuperButton *pSuperButton = new ROOM::tSuperButton(name, icon, type, cmds);
         mSuperButtons.push_back(*pSuperButton);
     }
-
-
 }
 
-// convert the string to the enum type
+/*!
+ * \brief RoomData::getType
+ * \param type - string of the type
+ * \returns the enum value of a command type string
+ */
 ROOM::eCMD_TYPE RoomData::getType(QString type)
 {
     return (type == "ir" ? ROOM::eCMD_IR :
