@@ -17,12 +17,12 @@ namespace
 // ctor
 BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 : mpRootObj(pRootObj)
-, mpSuperButtonGrid(NULL)
+, mpSuperButtonGrid(nullptr)
 , mConfigParser(*new ConfigParser())
 {
     for (int i = 0; i< BERRYMOTE::MAX_SUPER_BUTTONS; i++)
     {
-        mpSuperButtons[i] = NULL;
+        mpSuperButtons[i] = nullptr;
     }
 }
 
@@ -49,11 +49,14 @@ void BerrymoteMain::init()
     // init the config parser first
     if ( mConfigParser.init() )
     {
+        // dummy check
+        mConfigParser.getRooms();
+
         // allocate the qml objects
         mpSuperButtonGrid = new QmlGenericObject(QML_OBJ_SUPERBTNGRID, mpRootObj);
 
         // allocate the buttons in the grid and assign button ids
-        if (mpSuperButtonGrid != NULL)
+        if (mpSuperButtonGrid != nullptr)
         {
             int sz = mpSuperButtonGrid->getQmlObj()->children().size();
 

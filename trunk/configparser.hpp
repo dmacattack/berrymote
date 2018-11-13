@@ -11,6 +11,7 @@ public:
 
     bool init();
 
+    void getRooms();
 
 private:
     bool readConfigFile();

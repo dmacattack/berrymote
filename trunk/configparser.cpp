@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QFile>
 #include <QJsonDocument>
+#include <QJsonArray>
+#include "roomdata.hpp"
 
 // anonymous namespace
 namespace
@@ -21,7 +23,7 @@ namespace
 
 // ctor
 ConfigParser::ConfigParser()
-: mpConfigFile (NULL)
+: mpConfigFile (nullptr)
 {
 }
 
@@ -51,6 +53,28 @@ bool ConfigParser::init()
     }
 
     return isOk;
+}
+
+// test function to parse out the data from the config file
+void ConfigParser::getRooms()
+{
+    QJsonArray roomArray = mpConfigFile->find("rooms").value().toArray();
+
+    QJsonDocument doc(roomArray);
+
+    int sz = roomArray.size();
+
+    for (int i=0; i<sz; i++)
+    {
+        QJsonObject pObj = roomArray.at(i).toObject();
+        RoomData *pData = new RoomData(pObj);
+        // debug test
+        qDebug() << pData->getName() << pData->getIcon() << pData->getPayload();
+
+        delete pData;
+    }
+
+
 }
 
 // read the config file into the json object

@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     berrymotemain.cpp \
     qmlgenericobject.cpp \
     qmlobjectbase.cpp \
-    configparser.cpp
+    configparser.cpp \
+    roomdata.cpp
 
 RESOURCES += qml.qrc
 
@@ -23,7 +24,8 @@ HEADERS += \
     berrymotemain.hpp \
     qmlgenericobject.hpp \
     qmlobjectbase.hpp \
-    configparser.hpp
+    configparser.hpp \
+    roomdata.hpp
 
 DISTFILES += \
     berrymote.json \
