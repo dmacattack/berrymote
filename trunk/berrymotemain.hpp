@@ -33,6 +33,9 @@ private:
     QObject *mpRootObj;
     QmlGenericObject *mpSuperButtonGrid;
     QmlGenericObject *mpSuperButtons[BERRYMOTE::MAX_SUPER_BUTTONS];
+    QmlGenericObject *mpRoomDrawer;
+    QmlGenericObject *mpRoomGrid;
+    QmlGenericObject *mpRoomButtons[BERRYMOTE::MAX_ROOMS];
 
     ConfigParser &mConfigParser;
 

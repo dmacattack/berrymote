@@ -10,6 +10,7 @@ Item
     property double widthFactor: 0.9
     property string baseColor: "grey"
     property string fontColor: "black"
+    property var buttonClickFn: undefined
 
     // colors generated from
     // https://coolors.co/171a21-606572-7988aa-91acea-afc5f7
@@ -83,9 +84,9 @@ Item
                 columns: 1
                 rows: 3
 
-                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
             }
         }
     }

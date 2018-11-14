@@ -8,6 +8,9 @@ namespace
     // qml objects
     const char* QML_OBJ_SUPERBTNGRID = "gridSuperButtons";
     const char* QML_OBJ_SUPERBTN     = "superButton";
+    const char* QML_OBJ_ROOMDRAWER   = "roomDrawer";
+    const char* QML_OBJ_ROOMGRID     = "gridRooms";
+    const char* QML_OBJ_ROOMBTN      = "roomButton";
 
     // qml props
     const char* QML_PROP_TITLE = "title";
@@ -17,7 +20,8 @@ namespace
     enum eBTN_IDS
     {
         eBTN_TBD,
-        eBTN_SUPER_BUTTON_OFFSET = 100
+        eBTN_SUPER_BUTTON_OFFSET = 100,
+        eBTN_ROOM_BUTTON_OFFSET = 200
     };
 }
 
@@ -25,12 +29,20 @@ namespace
 BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 : mpRootObj(pRootObj)
 , mpSuperButtonGrid(nullptr)
+, mpRoomDrawer(nullptr)
+, mpRoomGrid(nullptr)
 , mConfigParser(*new ConfigParser())
 , mpRooms(NULL)
 {
+    // init the super buttons objects
     for (int i = 0; i< BERRYMOTE::MAX_SUPER_BUTTONS; i++)
     {
         mpSuperButtons[i] = nullptr;
+    }
+    // init the room buttons objects
+    for (int i = 0; i< BERRYMOTE::MAX_ROOMS; i++)
+    {
+        mpRoomButtons[i] = nullptr;
     }
 }
 
@@ -48,6 +60,24 @@ BerrymoteMain::~BerrymoteMain()
         if (mpSuperButtons[i])
         {
             delete mpSuperButtons[i];
+        }
+    }
+
+    if (mpRoomDrawer)
+    {
+        delete mpRoomDrawer;
+    }
+
+    if (mpRoomGrid)
+    {
+        delete mpRoomGrid;
+    }
+
+    for (int i = 0; i< BERRYMOTE::MAX_ROOMS; i++)
+    {
+        if (mpRoomButtons[i])
+        {
+            delete mpRoomButtons[i];
         }
     }
 
@@ -85,6 +115,25 @@ void BerrymoteMain::init()
             }
         }
 
+        // allocat the drawer and sub-objects
+        mpRoomDrawer = new QmlGenericObject(QML_OBJ_ROOMDRAWER, mpRootObj);
+        mpRoomGrid = new QmlGenericObject(QML_OBJ_ROOMGRID, mpRoomDrawer->getQmlObj());
+
+        if (mpRoomGrid != nullptr)
+        {
+            int sz = mpRoomGrid->getQmlObj()->children().size();
+
+            for (int i = 0 ; i< sz; i++)
+            {
+                // all the buttons are added by their ID. So for debugging the id provides
+                // a string since the qml isn't discovered by name
+                QObject *pObj = mpRoomGrid->getQmlObj()->children().at(i);
+                int btnId = eBTN_ROOM_BUTTON_OFFSET + i;
+                mpRoomButtons[i] = new QmlGenericObject(QML_OBJ_ROOMBTN, btnId, pObj);
+                mpRoomButtons[i]->setId(btnId);
+            }
+        }
+
         // connect signals/slots
         QObject::connect( mpRootObj, SIGNAL(buttonClick(int)), this, SLOT(onButtonClick(int)) );
 
@@ -114,10 +163,10 @@ void BerrymoteMain::initRooms()
             setRooms(*mpRooms);
         }
 
-        // set the super Buttons to the first set
+        // set the super Buttons to the first room
         if (mpRooms->size() > 0)
         {
-            ROOM::SuperButtons sb = mpRooms->at(1)->getSuperButtons();
+            ROOM::SuperButtons sb = mpRooms->at(0)->getSuperButtons();
             setSuperButtons( sb );
         }
     }
@@ -134,9 +183,24 @@ void BerrymoteMain::initRooms()
  */
 void BerrymoteMain::setRooms(ROOM::Rooms &rooms)
 {
-    // suppress warnings
-    rooms = rooms;
-    // TODO implement
+    int i = 0;
+    int numRooms = rooms.size() > BERRYMOTE::MAX_ROOMS ? BERRYMOTE::MAX_ROOMS : rooms.size();
+
+    for (; i < numRooms; i++)
+    {
+        // show the button
+        mpRoomButtons[i]->setVisibility(true);
+        // set the title
+        mpRoomButtons[i]->setProperty(QML_PROP_TITLE, rooms.at(i)->getName() );
+        // set the icon
+        mpRoomButtons[i]->setProperty(QML_PROP_ICON, rooms.at(i)->getIcon() );
+    }
+
+    // hide the rest of the buttons
+    for (; i < BERRYMOTE::MAX_ROOMS; i++)
+    {
+        mpRoomButtons[i]->setVisibility(false);
+    }
 }
 
 /*!

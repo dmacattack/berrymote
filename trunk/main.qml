@@ -84,6 +84,7 @@ Window
         height: rootWindow.height
         baseColor: rootWindow.drawerColor
         fontColor: rootWindow.drawerFontColor
+        buttonClickFn: buttonClick
         x: 0
         y: maxDrawerY
 
