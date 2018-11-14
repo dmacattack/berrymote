@@ -61,6 +61,7 @@ public:
 
     QString getString();
     QString getName() { return mName; }
+    QString getIcon() { return mIcon; }
 
 private:
     void setData(QJsonObject jObj);
@@ -69,6 +70,7 @@ private:
 
 private:
     QString mName;
+    QString mIcon;
     ROOM::SuperButtons &mSuperButtons;
 };
 

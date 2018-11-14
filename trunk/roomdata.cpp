@@ -18,6 +18,7 @@ namespace
  */
 RoomData::RoomData(QJsonObject jObj)
 : mName("")
+, mIcon("")
 , mSuperButtons(*new ROOM::SuperButtons() )
 {
     setData(jObj);
@@ -43,11 +44,10 @@ RoomData::~RoomData()
  */
 QString RoomData::getString()
 {
-    QString str = QString("%1: \n").arg(mName);
+    QString str = QString("%1: [%2] \n").arg(mName).arg(mIcon);
 
     for (int i = 0, sz = mSuperButtons.size(); i < sz; i++)
     {
-
         QJsonDocument doc(mSuperButtons.at(i).cmd);
         QString cmds = QString(doc.toJson());
         QString superBtn = QString("   name: %1 \n"
@@ -73,7 +73,10 @@ void RoomData::setData(QJsonObject jObj)
 {
     // name of this room
     mName = jObj.find(JSON_PROP_NAME).value().toString();
+    // icon for this room
+    mIcon = jObj.find(JSON_PROP_ICON).value().toString();
 
+    // super button data
     QJsonArray jSuperButtons = jObj.find(JSON_PROP_SUPER_BUTTONS).value().toArray();
 
     for (int i = 0, sz = jSuperButtons.size() ; i < sz; i++)

@@ -6,6 +6,7 @@
     [
         {
             "name": "TV Room",
+            "icon": "\uf26c",
             "superButtons":
             [
                 {
@@ -24,6 +25,7 @@
         },
         {
             "name": "Bedroom",
+            "icon": "\uf236",
             "superButtons":
             [
                 {
