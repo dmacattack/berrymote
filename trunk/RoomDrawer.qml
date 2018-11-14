@@ -11,6 +11,17 @@ Item
     property string baseColor: "grey"
     property string fontColor: "black"
 
+    // colors generated from
+    // https://coolors.co/171a21-606572-7988aa-91acea-afc5f7
+    readonly property string colorDkBlue:     "#171A21"
+    readonly property string colorGreyBlue:   "#606572"
+    readonly property string colorMediumBlue: "#7988AA"
+    readonly property string colorBlue:       "#91ACEA"
+    readonly property string colorLightBlue:  "#AFC5F7"
+    readonly property int drawerTitleTopMargin: 5
+    readonly property int gridItemWd: 65
+    readonly property int gridItemSpacing: 20
+
     //----------------------------------
     // roomDrawerBG
     // background container for the drawer
@@ -50,11 +61,31 @@ Item
                 id: txtDrawerTitle
                 objectName: "txtDrawerTitle"
                 anchors.top: parent.top
-                anchors.topMargin: 5
+                anchors.topMargin: roomDrawer.drawerTitleTopMargin
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "Rooms"
                 color: roomDrawer.fontColor
                 z: 3
+            }
+
+            //----------------------------------
+            // gridRooms
+            // grid of the rooms
+            //----------------------------------
+            Grid
+            {
+                id: gridRooms
+                objectName: "gridRooms"
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: (roomDrawer.height - gridRooms.height - txtDrawerTitle.height - roomDrawer.drawerTitleTopMargin)/2
+                spacing: roomDrawer.gridItemSpacing
+                columns: 1
+                rows: 3
+
+                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
             }
         }
     }

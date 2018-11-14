@@ -12,9 +12,11 @@ Item
     property string fontColor: "white"
     property string fontHighlightColor: "black"
     property string text: ""
+    property string title: ""
     property var buttonClickFn: undefined
     property int buttonId: -1
     readonly property int fontSize: 35
+    readonly property int titleFontSize: 10
 
     // fonts
     FontLoader
@@ -24,8 +26,8 @@ Item
     }
 
     //----------------------------------
-    // dummy Rectangle
-    // this provides the content of the button
+    // btnBase
+    // Background of the button
     //----------------------------------
     Rectangle
     {
@@ -67,5 +69,18 @@ Item
                 }
             }
         }
+    }
+
+    //----------------------------------
+    // txtButtonTitle
+    //----------------------------------
+    Text
+    {
+        id: txtButtonTitle
+        anchors.top: btnBase.bottom
+        anchors.horizontalCenter: btnBase.horizontalCenter
+        text: superButton.title
+        color: fontColor
+        font.pointSize: superButton.titleFontSize
     }
 }
