@@ -63,12 +63,12 @@ Window
         columns: 2
         rows: 3
 
-        SuperButton { title: "Power";       color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf011"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { title: "Fan";         color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf72e"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { title: "Living Room"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { title: "TV Room";     color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { title: "Wifi";        color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf1eb"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
-        SuperButton { title: "Settings";    color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "Power";       color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf011"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "Fan";         color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf72e"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "Living Room"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "TV Room";     color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "Wifi";        color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf1eb"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
+        SuperButton { title: "Settings";    color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: buttonClick; width: gridItemWd; height: width }
     }
 
     //----------------------------------

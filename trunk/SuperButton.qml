@@ -11,7 +11,7 @@ Item
     property string highlightColor: "white"
     property string fontColor: "white"
     property string fontHighlightColor: "black"
-    property string text: ""
+    property string icon: ""
     property string title: ""
     property var buttonClickFn: undefined
     property int buttonId: -1
@@ -42,7 +42,7 @@ Item
             anchors.centerIn: parent
             font.family: fontAwesome.name
             font.pointSize: superButton.fontSize
-            text: superButton.text
+            text: superButton.icon
             color: superButton.fontColor
         }
 
@@ -73,6 +73,7 @@ Item
 
     //----------------------------------
     // txtButtonTitle
+    // text of what the button does (eg: ceiling fan)
     //----------------------------------
     Text
     {

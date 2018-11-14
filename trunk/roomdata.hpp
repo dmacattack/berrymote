@@ -60,8 +60,9 @@ public:
     ~RoomData();
 
     QString getString();
-    QString getName() { return mName; }
-    QString getIcon() { return mIcon; }
+    QString getName()                    { return mName; }
+    QString getIcon()                    { return mIcon; }
+    ROOM::SuperButtons getSuperButtons() { return mSuperButtons; }
 
 private:
     void setData(QJsonObject jObj);

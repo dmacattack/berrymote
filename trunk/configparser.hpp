@@ -2,6 +2,12 @@
 #define CONFIGPARSER_H
 
 #include <QJsonObject>
+#include "roomdata.hpp"
+
+namespace ROOM
+{
+    typedef QVector<RoomData*> Rooms;
+}
 
 class ConfigParser
 {
@@ -10,8 +16,7 @@ public:
     ~ConfigParser();
 
     bool init();
-
-    void getRooms();
+    bool getRooms(ROOM::Rooms *pRooms);
 
 private:
     bool readConfigFile();

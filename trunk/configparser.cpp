@@ -9,7 +9,8 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonArray>
-#include "roomdata.hpp"
+
+#define DBG_BLOCK 0
 
 // anonymous namespace
 namespace
@@ -76,22 +77,54 @@ bool ConfigParser::init()
 /*!
  * \brief ConfigParser::getRooms
  * Populate the rooms from the json file
- * \param 
+ * \param pRooms - pointer to Rooms object to populate
+ * \returns true if successful
  */
-void ConfigParser::getRooms()
+bool ConfigParser::getRooms(ROOM::Rooms *pRooms)
 {
-    QJsonArray roomArray = mpConfigFile->find(JSON_PROP_ROOMS).value().toArray();
+    bool isOk = false;
 
-    int sz = roomArray.size();
-
-    for (int i=0; i<sz; i++)
+    if (pRooms != NULL)
     {
-        QJsonObject pObj = roomArray.at(i).toObject();
+        //pRooms = new ROOM::Rooms();
+        QJsonArray roomArray = mpConfigFile->find(JSON_PROP_ROOMS).value().toArray();
+        int sz = roomArray.size();
 
-        RoomData *pData = new RoomData(pObj);
-        // debug test
-        qDebug() << pData->getString();
+        if (sz > 0)
+        {
+            isOk = true;
+
+            for (int i=0; i<sz; i++)
+            {
+                QJsonObject pObj = roomArray.at(i).toObject();
+
+                RoomData *pData = new RoomData(pObj);
+                pRooms->push_back(pData);
+            }
+
+            // debug test
+    #if DBG_BLOCK
+            for (int i = 0 ; i< pRooms->size(); i++)
+            {
+                qDebug () << "----------------------------------------------";
+                RoomData *room = pRooms->at(i);
+                qDebug("name: %s [%s] ", room->getName().toStdString().c_str(), room->getIcon().toStdString().c_str() );
+
+                ROOM::SuperButtons sbs = room->getSuperButtons();
+                for (int j = 0; j< sbs.size(); j++ )
+                {
+                    ROOM::tSuperButton sb = sbs.at(j);
+                    qDebug("   name: %s [%s] type:%d", sb.name.toStdString().c_str(), sb.icon.toStdString().c_str(), sb.type );
+                    QJsonDocument doc(sb.cmd);
+                    QString cmd = QString(doc.toJson());
+                    qDebug("      %s", cmd.toStdString().c_str());
+                }
+            }
+    #endif
+        }
     }
+
+    return isOk;
 }
 
 /*!

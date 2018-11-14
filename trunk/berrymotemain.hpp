@@ -8,6 +8,7 @@
 namespace BERRYMOTE
 {
     const int MAX_SUPER_BUTTONS = 6;
+    const int MAX_ROOMS         = 3;
 }
 
 class BerrymoteMain
@@ -24,12 +25,18 @@ private slots:
     void onButtonClick(int btnID);
 
 private:
+    void initRooms();
+    void setRooms(ROOM::Rooms &rooms);
+    void setSuperButtons(ROOM::SuperButtons &sb);
+
+private:
     QObject *mpRootObj;
     QmlGenericObject *mpSuperButtonGrid;
     QmlGenericObject *mpSuperButtons[BERRYMOTE::MAX_SUPER_BUTTONS];
 
     ConfigParser &mConfigParser;
 
+    ROOM::Rooms *mpRooms;
 };
 
 #endif // BERRYMOTEMAIN_H

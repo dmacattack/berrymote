@@ -83,9 +83,9 @@ Item
                 columns: 1
                 rows: 3
 
-                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf4b8"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf26c"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; text: "\uf013"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
+                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: buttonClick; width: roomDrawer.gridItemWd; height: width }
             }
         }
     }
