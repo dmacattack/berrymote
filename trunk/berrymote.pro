@@ -4,11 +4,11 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    berrymotemain.cpp \
-    qmlgenericobject.cpp \
-    qmlobjectbase.cpp \
-    configparser.cpp \
-    roomdata.cpp
+    ui/berrymotemain.cpp \
+    ui/roomdata.cpp \
+    utility/configparser.cpp \
+    utility/qmlgenericobject.cpp \
+    utility/qmlobjectbase.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,12 +21,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    berrymotemain.hpp \
-    qmlgenericobject.hpp \
-    qmlobjectbase.hpp \
-    configparser.hpp \
-    roomdata.hpp
+    ui/berrymotemain.hpp \
+    ui/roomdata.hpp \
+    utility/configparser.hpp \
+    utility/qmlgenericobject.hpp \
+    utility/qmlobjectbase.hpp
+
+INCLUDEPATH +=$$PWD
+INCLUDEPATH +=$$PWD/ui
+INCLUDEPATH +=$$PWD/utility
 
 DISTFILES += \
     berrymote.json \
-    fonts/fontAwesomev5.5.0.otf
+    fonts/fontAwesomev5.5.0.otf \
+    utility/berrymote.json

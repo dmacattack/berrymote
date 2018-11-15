@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>RoomDrawer.qml</file>
-        <file>SuperButton.qml</file>
         <file>fonts/fontAwesomev5.5.0.otf</file>
+        <file>qml/main.qml</file>
+        <file>qml/RoomDrawer.qml</file>
+        <file>qml/SuperButton.qml</file>
     </qresource>
 </RCC>
