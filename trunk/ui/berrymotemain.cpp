@@ -13,8 +13,9 @@ namespace
     const char* QML_OBJ_ROOMBTN      = "roomButton";
 
     // qml props
-    const char* QML_PROP_TITLE = "title";
-    const char* QML_PROP_ICON  = "icon";
+    const char* QML_PROP_TITLE      = "title";
+    const char* QML_PROP_ICON       = "icon";
+    const char* QML_PROP_ROOM_TITLE = "roomTitle";
 
     // button indexes
     enum eBTN_IDS
@@ -157,6 +158,9 @@ void BerrymoteMain::initRooms()
 
     if ( mConfigParser.getRooms(mpRooms) )
     {
+        // set the main screen title
+        mpRootObj->setProperty( QML_PROP_ROOM_TITLE, mpRooms->at(0)->getName() );
+
         // set the rooms
         if (mpRooms->size() > 0)
         {
