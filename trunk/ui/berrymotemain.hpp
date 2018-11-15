@@ -4,6 +4,7 @@
 #include <QObject>
 #include "qmlgenericobject.hpp"
 #include "configparser.hpp"
+#include "roomstatusbar.hpp"
 
 namespace BERRYMOTE
 {
@@ -36,6 +37,7 @@ private:
     QmlGenericObject *mpRoomDrawer;
     QmlGenericObject *mpRoomGrid;
     QmlGenericObject *mpRoomButtons[BERRYMOTE::MAX_ROOMS];
+    RoomStatusBar *mpRoomStatusBar;
 
     ConfigParser &mConfigParser;
 

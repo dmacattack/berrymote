@@ -24,7 +24,6 @@ Window
     //----------------------------------
     // local properties
     //----------------------------------
-    property string roomTitle: ""
     readonly property int drawerClosedHt: 20
     readonly property int maxDrawerY: rootWindow.height - drawerClosedHt
     readonly property int drawerMiddleThreshold: rootWindow.height * 0.5 // at the 75% mark
@@ -51,24 +50,16 @@ Window
     signal buttonClick(int btnId);
 
     //----------------------------------
-    // txtRoomTitle
-    // wrapped in a Rectangle for alignment
+    // roomStatusBar
+    // status bar of this room/system events
     //----------------------------------
-    Rectangle
+    RoomStatusBar
     {
-        color: "transparent"
+        id: roomStatusBar
+        objectName: "roomStatusBar"
         width: parent.width
         height: drawerClosedHt
         anchors.top: parent.top
-
-        Text
-        {
-            id: txtRoomTitle
-            text: rootWindow.roomTitle
-            anchors.centerIn: parent
-            color: "black"
-            font.pointSize: 12
-        }
     }
 
     //----------------------------------

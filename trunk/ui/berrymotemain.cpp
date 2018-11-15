@@ -6,6 +6,7 @@
 namespace
 {
     // qml objects
+    const char* QML_OBJ_STATUS_BAR  = "roomStatusBar";
     const char* QML_OBJ_SUPERBTNGRID = "gridSuperButtons";
     const char* QML_OBJ_SUPERBTN     = "superButton";
     const char* QML_OBJ_ROOMDRAWER   = "roomDrawer";
@@ -15,7 +16,6 @@ namespace
     // qml props
     const char* QML_PROP_TITLE      = "title";
     const char* QML_PROP_ICON       = "icon";
-    const char* QML_PROP_ROOM_TITLE = "roomTitle";
 
     // button indexes
     enum eBTN_IDS
@@ -32,6 +32,7 @@ BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 , mpSuperButtonGrid(nullptr)
 , mpRoomDrawer(nullptr)
 , mpRoomGrid(nullptr)
+, mpRoomStatusBar(nullptr)
 , mConfigParser(*new ConfigParser())
 , mpRooms(NULL)
 {
@@ -82,6 +83,11 @@ BerrymoteMain::~BerrymoteMain()
         }
     }
 
+    if (mpRoomStatusBar)
+    {
+        delete mpRoomStatusBar;
+    }
+
     // delete objects
     delete &mConfigParser;
 
@@ -97,7 +103,10 @@ void BerrymoteMain::init()
     // init the config parser first
     if ( mConfigParser.init() )
     {
-        // allocate the qml objects
+        // allocate the status bar
+        mpRoomStatusBar = new RoomStatusBar(QML_OBJ_STATUS_BAR, mpRootObj);
+
+        // allocate the super button grid
         mpSuperButtonGrid = new QmlGenericObject(QML_OBJ_SUPERBTNGRID, mpRootObj);
 
         // allocate the buttons in the grid and assign button ids
@@ -158,8 +167,8 @@ void BerrymoteMain::initRooms()
 
     if ( mConfigParser.getRooms(mpRooms) )
     {
-        // set the main screen title
-        mpRootObj->setProperty( QML_PROP_ROOM_TITLE, mpRooms->at(0)->getName() );
+        // set the status bar title
+        mpRoomStatusBar->setTitle(mpRooms->at(0)->getName());
 
         // set the rooms
         if (mpRooms->size() > 0)

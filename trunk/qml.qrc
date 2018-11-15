@@ -4,5 +4,6 @@
         <file>qml/main.qml</file>
         <file>qml/RoomDrawer.qml</file>
         <file>qml/SuperButton.qml</file>
+        <file>qml/RoomStatusBar.qml</file>
     </qresource>
 </RCC>

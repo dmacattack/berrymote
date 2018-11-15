@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     utility/qmlgenericobject.cpp \
     utility/qmlobjectbase.cpp \
     hw/irhandler.cpp \
-    hw/iphandler.cpp
+    hw/iphandler.cpp \
+    ui/roomstatusbar.cpp
 
 RESOURCES += qml.qrc
 
@@ -29,7 +30,8 @@ HEADERS += \
     utility/qmlgenericobject.hpp \
     utility/qmlobjectbase.hpp \
     hw/irhandler.hpp \
-    hw/iphandler.hpp
+    hw/iphandler.hpp \
+    ui/roomstatusbar.hpp
 
 INCLUDEPATH +=$$PWD
 INCLUDEPATH +=$$PWD/ui
