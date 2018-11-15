@@ -22,9 +22,11 @@ namespace
     const char* CFG_FILE = "./berrymote.json";
 
     // json data
-    const char* JSON_PROP_ROOMS     = "rooms";
-    const char* JSON_PROP_VER_MAJOR = "versionMajor";
-    const char* JSON_PROP_VER_MINOR = "versionMinor";
+    const char* JSON_PROP_ROOMS      = "rooms";
+    const char* JSON_PROP_VER_MAJOR  = "versionMajor";
+    const char* JSON_PROP_VER_MINOR  = "versionMinor";
+    const char* JSON_PROP_SSID       = "wifiSSID";
+    const char* JSON_PROP_PASSPHRASE = "wifiPass";
 }
 
 /*!
@@ -124,6 +126,26 @@ bool ConfigParser::getRooms(ROOM::Rooms *pRooms)
         }
     }
 
+    return isOk;
+}
+
+/*!
+ * \brief ConfigParser::getWifiCreds
+ * \param pSSSID - reference to SSID to populate
+ * \param pPassphrase - reference to passphrase to populate
+ * \returns true if successful
+ */
+bool ConfigParser::getWifiCreds(QString *pSSSID, QString *pPassphrase)
+{
+    bool isOk = true;
+
+    *pSSSID      = mpConfigFile->find(JSON_PROP_SSID).value().toString("");
+    *pPassphrase = mpConfigFile->find(JSON_PROP_PASSPHRASE).value().toString("");
+
+    if (pSSSID->length() == 0)
+    {
+        isOk = false;
+    }
     return isOk;
 }
 

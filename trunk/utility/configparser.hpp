@@ -17,6 +17,7 @@ public:
 
     bool init();
     bool getRooms(ROOM::Rooms *pRooms);
+    bool getWifiCreds(QString *pSSSID, QString *pPassphrase);
 
 private:
     bool readConfigFile();

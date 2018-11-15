@@ -8,7 +8,9 @@ SOURCES += main.cpp \
     ui/roomdata.cpp \
     utility/configparser.cpp \
     utility/qmlgenericobject.cpp \
-    utility/qmlobjectbase.cpp
+    utility/qmlobjectbase.cpp \
+    hw/irhandler.cpp \
+    hw/iphandler.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,7 +27,9 @@ HEADERS += \
     ui/roomdata.hpp \
     utility/configparser.hpp \
     utility/qmlgenericobject.hpp \
-    utility/qmlobjectbase.hpp
+    utility/qmlobjectbase.hpp \
+    hw/irhandler.hpp \
+    hw/iphandler.hpp
 
 INCLUDEPATH +=$$PWD
 INCLUDEPATH +=$$PWD/ui
