@@ -20,8 +20,6 @@ Item
     readonly property string colorBlue:       "#91ACEA"
     readonly property string colorLightBlue:  "#AFC5F7"
     readonly property int drawerTitleTopMargin: 5
-    readonly property int gridItemWd: 65
-    readonly property int gridItemSpacing: 20
 
     //----------------------------------
     // roomDrawerBG
@@ -67,26 +65,6 @@ Item
                 text: "Rooms"
                 color: roomDrawer.fontColor
                 z: 3
-            }
-
-            //----------------------------------
-            // gridRooms
-            // grid of the rooms
-            //----------------------------------
-            Grid
-            {
-                id: gridRooms
-                objectName: "gridRooms"
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: (roomDrawer.height - gridRooms.height - txtDrawerTitle.height - roomDrawer.drawerTitleTopMargin)/2
-                spacing: roomDrawer.gridItemSpacing
-                columns: 1
-                rows: 3
-
-                SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
-                SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
             }
         }
     }

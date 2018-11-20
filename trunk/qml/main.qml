@@ -102,6 +102,12 @@ Window
         y: maxDrawerY
 
         //----------------------------------
+        // local properties
+        //----------------------------------
+        readonly property int gridItemWd: 65
+        readonly property int gridItemSpacing: 20
+
+        //----------------------------------
         // draggingMouse
         // mouse event handling for opening/closing the drawer
         // with slide or click events
@@ -114,7 +120,6 @@ Window
             drag.axis: Drag.YAxis
             drag.maximumY: maxDrawerY
             drag.minimumY: 0
-            propagateComposedEvents: true // pass click event to the child objects
 
             property int startY: 0
 
@@ -148,7 +153,8 @@ Window
                     }
                 }
             }
-        }
+
+        } // ~MouseArea
 
         //----------------------------------
         // animOpenCloseDrawe
@@ -194,7 +200,27 @@ Window
 
                 this.start();
             }
+        } // ~NumberAnimation
 
-        }
+
+        //----------------------------------
+        // gridRooms
+        // grid of the rooms
+        //----------------------------------
+        Grid
+        {
+            id: gridRooms
+            objectName: "gridRooms"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: 100 // (roomDrawer.height - gridRooms.height - txtDrawerTitle.height - roomDrawer.drawerTitleTopMargin)/2
+            spacing: roomDrawer.gridItemSpacing
+            columns: 1
+            rows: 3
+
+            SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
+            SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
+            SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: roomDrawer.buttonClick; width: roomDrawer.gridItemWd; height: width }
+        } //~gridRooms
     }
 }
