@@ -7,6 +7,8 @@
 #include "roomstatusbar.hpp"
 #include "roomdrawer.hpp"
 #include "berrymotetypes.hpp"
+#include "irhandler.hpp"
+#include "iphandler.hpp"
 
 class BerrymoteMain
 : public QObject
@@ -34,6 +36,8 @@ private:
     RoomStatusBar *mpRoomStatusBar;
     RoomDrawer    *mpRoomDrawer;
     ConfigParser &mConfigParser;
+    IRHandler &mIRHandler;
+    IPHandler &mIPHandler;
 
     BERRYMOTE::Rooms *mpRooms;
     int mCurrentRoomIdx;

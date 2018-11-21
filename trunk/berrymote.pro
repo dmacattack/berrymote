@@ -39,6 +39,7 @@ HEADERS += \
 INCLUDEPATH +=$$PWD
 INCLUDEPATH +=$$PWD/ui
 INCLUDEPATH +=$$PWD/utility
+INCLUDEPATH +=$$PWD/hw
 
 DISTFILES += \
     berrymote.json \

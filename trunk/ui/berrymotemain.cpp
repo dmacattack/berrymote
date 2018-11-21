@@ -31,6 +31,8 @@ BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 , mpRoomStatusBar(nullptr)
 , mpRoomDrawer(nullptr)
 , mConfigParser(*new ConfigParser())
+, mIRHandler(* new IRHandler() )
+, mIPHandler(* new IPHandler() )
 , mpRooms(nullptr)
 , mCurrentRoomIdx(0)
 {
@@ -70,6 +72,8 @@ BerrymoteMain::~BerrymoteMain()
 
     // delete objects
     delete &mConfigParser;
+    delete &mIRHandler;
+    delete &mIPHandler;
 
     if (mpRooms)
     {
@@ -220,15 +224,14 @@ void BerrymoteMain::processSuperButton(ROOM::tSuperButton btn)
 {
     ROOM::eCMD_TYPE cmdType = btn.type;
     QJsonArray cmd          = btn.cmd;
-    QString cmdStr = QString(QJsonDocument(cmd).toJson());
 
     switch(cmdType)
     {
     case ROOM::eCMD_IR:
-        qDebug() << "IR CMD with payload" << cmdStr;
+        mIRHandler.processCommand(cmd);
         break;
     case ROOM::eCMD_IP:
-        qDebug() << "IP CMD with payload" << cmdStr;
+        mIPHandler.processCommand(cmd);
         break;
     default:
         qWarning() << "unknown cmd type";
