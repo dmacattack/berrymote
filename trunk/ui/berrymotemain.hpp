@@ -5,12 +5,8 @@
 #include "qmlgenericobject.hpp"
 #include "configparser.hpp"
 #include "roomstatusbar.hpp"
-
-namespace BERRYMOTE
-{
-    const int MAX_SUPER_BUTTONS = 6;
-    const int MAX_ROOMS         = 3;
-}
+#include "roomdrawer.hpp"
+#include "berrymotetypes.hpp"
 
 class BerrymoteMain
 : public QObject
@@ -27,21 +23,18 @@ private slots:
 
 private:
     void initRooms();
-    void setRooms(ROOM::Rooms &rooms);
     void setSuperButtons(ROOM::SuperButtons &sb);
 
 private:
     QObject *mpRootObj;
     QmlGenericObject *mpSuperButtonGrid;
     QmlGenericObject *mpSuperButtons[BERRYMOTE::MAX_SUPER_BUTTONS];
-    QmlGenericObject *mpRoomDrawer;
-    QmlGenericObject *mpRoomGrid;
-    QmlGenericObject *mpRoomButtons[BERRYMOTE::MAX_ROOMS];
-    RoomStatusBar *mpRoomStatusBar;
 
+    RoomStatusBar *mpRoomStatusBar;
+    RoomDrawer    *mpRoomDrawer;
     ConfigParser &mConfigParser;
 
-    ROOM::Rooms *mpRooms;
+    BERRYMOTE::Rooms *mpRooms;
 };
 
 #endif // BERRYMOTEMAIN_H

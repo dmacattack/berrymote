@@ -2,12 +2,7 @@
 #define CONFIGPARSER_H
 
 #include <QJsonObject>
-#include "roomdata.hpp"
-
-namespace ROOM
-{
-    typedef QVector<RoomData*> Rooms;
-}
+#include "berrymotetypes.hpp"
 
 class ConfigParser
 {
@@ -16,7 +11,7 @@ public:
     ~ConfigParser();
 
     bool init();
-    bool getRooms(ROOM::Rooms *pRooms);
+    bool getRooms(BERRYMOTE::Rooms *pRooms);
     bool getWifiCreds(QString *pSSSID, QString *pPassphrase);
 
 private:

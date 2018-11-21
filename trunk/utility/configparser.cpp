@@ -82,7 +82,7 @@ bool ConfigParser::init()
  * \param pRooms - pointer to Rooms object to populate
  * \returns true if successful
  */
-bool ConfigParser::getRooms(ROOM::Rooms *pRooms)
+bool ConfigParser::getRooms(BERRYMOTE::Rooms *pRooms)
 {
     bool isOk = false;
 
