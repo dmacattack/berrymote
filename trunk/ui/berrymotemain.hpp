@@ -24,6 +24,7 @@ private slots:
 private:
     void initRooms();
     void setSuperButtons(ROOM::SuperButtons &sb);
+    void processSuperButton(ROOM::tSuperButton btn);
 
 private:
     QObject *mpRootObj;
@@ -35,6 +36,7 @@ private:
     ConfigParser &mConfigParser;
 
     BERRYMOTE::Rooms *mpRooms;
+    int mCurrentRoomIdx;
 };
 
 #endif // BERRYMOTEMAIN_H

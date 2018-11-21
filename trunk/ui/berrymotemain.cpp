@@ -32,6 +32,7 @@ BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 , mpRoomDrawer(nullptr)
 , mConfigParser(*new ConfigParser())
 , mpRooms(nullptr)
+, mCurrentRoomIdx(0)
 {
     // init the super buttons objects
     for (int i = 0; i< BERRYMOTE::MAX_SUPER_BUTTONS; i++)
@@ -131,18 +132,15 @@ void BerrymoteMain::initRooms()
 
     if ( mConfigParser.getRooms(mpRooms) )
     {
-        // set the status bar title
-        mpRoomStatusBar->setTitle(mpRooms->at(0)->getName());
-
-        // set the rooms
         if (mpRooms->size() > 0)
         {
+            // set the status bar title
+            mpRoomStatusBar->setTitle(mpRooms->at(0)->getName());
+
+            // set the rooms
             mpRoomDrawer->setRooms(*mpRooms);
-        }
 
-        // set the super Buttons to the first room
-        if (mpRooms->size() > 0)
-        {
+            // set the super Buttons to the first room
             ROOM::SuperButtons sb = mpRooms->at(0)->getSuperButtons();
             setSuperButtons( sb );
         }
@@ -180,8 +178,60 @@ void BerrymoteMain::setSuperButtons(ROOM::SuperButtons &sb)
     }
 }
 
-// slot callback for button click
+/*!
+ * \brief BerrymoteMain::onButtonClick
+ * Slot callback for button clicks on the main.qml
+ * \param btnID - id of the button that was clicked
+ */
 void BerrymoteMain::onButtonClick(int btnID)
 {
     qDebug() << "clicked button ID:" << btnID;
+
+    if ( (btnID >= eBTN_SUPER_BUTTON_OFFSET) &&
+         (btnID < eBTN_ROOM_BUTTON_OFFSET) )
+    {
+        int sbIdx = btnID - eBTN_SUPER_BUTTON_OFFSET;
+        ROOM::SuperButtons sb = mpRooms->at(mCurrentRoomIdx)->getSuperButtons();
+
+        processSuperButton( sb.at(sbIdx) );
+    }
+    else if (btnID >= eBTN_ROOM_BUTTON_OFFSET)
+    {
+        // switch rooms by swtiching the superbuttons
+        mCurrentRoomIdx = btnID - eBTN_ROOM_BUTTON_OFFSET;
+        ROOM::SuperButtons sb = mpRooms->at(mCurrentRoomIdx)->getSuperButtons();
+        setSuperButtons( sb );
+
+        // update the title
+        mpRoomStatusBar->setTitle(mpRooms->at(mCurrentRoomIdx)->getName());
+    }
+    else
+    {
+        // unhandled button
+    }
+}
+
+
+/*!
+ * \brief BerrymoteMain::processSuperButton
+ * \param btn
+ */
+void BerrymoteMain::processSuperButton(ROOM::tSuperButton btn)
+{
+    ROOM::eCMD_TYPE cmdType = btn.type;
+    QJsonArray cmd          = btn.cmd;
+    QString cmdStr = QString(QJsonDocument(cmd).toJson());
+
+    switch(cmdType)
+    {
+    case ROOM::eCMD_IR:
+        qDebug() << "IR CMD with payload" << cmdStr;
+        break;
+    case ROOM::eCMD_IP:
+        qDebug() << "IP CMD with payload" << cmdStr;
+        break;
+    default:
+        qWarning() << "unknown cmd type";
+        break;
+    }
 }
