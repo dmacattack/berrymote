@@ -9,6 +9,7 @@
 #include "berrymotetypes.hpp"
 #include "irhandler.hpp"
 #include "iphandler.hpp"
+#include "hardkeyhandler.hpp"
 
 class BerrymoteMain
 : public QObject
@@ -22,6 +23,7 @@ public:
 
 private slots:
     void onButtonClick(int btnID);
+    void onHardKeyPressed(KEYS::eKEYS key);
 
 private:
     void initRooms();
@@ -38,6 +40,7 @@ private:
     ConfigParser &mConfigParser;
     IRHandler &mIRHandler;
     IPHandler &mIPHandler;
+    HardKeyHandler &mHardkeyHandler;
 
     BERRYMOTE::Rooms *mpRooms;
     int mCurrentRoomIdx;

@@ -43,6 +43,13 @@ Window
     readonly property string colorGradientStart : "#EDFACE"
     readonly property string colorGradientStop  : "#055F79"
 
+    // fonts
+    FontLoader
+    {
+        id: fontAwesome;
+        source: "qrc:/fonts/fontAwesomev5.5.0.otf"
+    }
+
     //----------------------------------
     // signals
     //----------------------------------
@@ -217,9 +224,9 @@ Window
             columns: 1
             rows: 3
 
-            SuperButton { title: "Bedroom";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
-            SuperButton { title: "TV Room";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
-            SuperButton { title: "Settings"; color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
+            SuperButton { title: "";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf4b8"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
+            SuperButton { title: "";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf26c"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
+            SuperButton { title: "";  color: colorDkBlue; fontColor: colorLightBlue; fontHighlightColor: colorDkBlue; highlightColor: colorLightBlue; icon: "\uf013"; buttonClickFn: rootWindow.buttonClick; width: roomDrawer.gridItemWd; height: width }
         } //~gridRooms
-    }
+    } //~RoomDrawer
 }

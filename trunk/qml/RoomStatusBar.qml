@@ -13,6 +13,7 @@ Item
     property int roomIconFontSize:        10
     property string taskBarBgColor:       "transparent"
     property bool wifiConnected:          false
+    property bool isSettingsPage:         false
     readonly property int rowIconSpacing: 5
 
     // fonts
@@ -34,16 +35,40 @@ Item
         height: parent.height
 
         //----------------------------------
-        // txtRoomTitle
-        // Room Name/Title
+        // Rectangle containing the title and page dots
         //----------------------------------
-        Text
+        Rectangle
         {
-            id: txtRoomTitle
-            text: roomStatusBar.roomTitle
             anchors.centerIn: parent
-            color: roomStatusBar.roomTitleFontColor
-            font.pointSize: roomStatusBar.roomTitleFontSize
+            height: parent.height
+
+            //----------------------------------
+            // txtRoomTitle
+            // Room Name/Title
+            //----------------------------------
+            Text
+            {
+                id: txtRoomTitle
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                text: roomStatusBar.roomTitle
+                color: roomStatusBar.roomTitleFontColor
+                font.pointSize: roomStatusBar.roomTitleFontSize
+            }
+
+            //----------------------------------
+            // pageDots
+            //----------------------------------
+            Text
+            {
+                id: pageDots
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: txtRoomTitle.bottom
+                anchors.topMargin: 2
+                text: roomStatusBar.isSettingsPage ? "\u25ef \u2b24" : "\u2b24 \u25ef"
+                font.pointSize: 8
+                color: roomStatusBar.roomTitleFontColor
+            }
         }
 
         //----------------------------------

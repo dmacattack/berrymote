@@ -30,9 +30,10 @@ BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 , mpSuperButtonGrid(nullptr)
 , mpRoomStatusBar(nullptr)
 , mpRoomDrawer(nullptr)
-, mConfigParser(*new ConfigParser())
-, mIRHandler(* new IRHandler() )
-, mIPHandler(* new IPHandler() )
+, mConfigParser  ( *new ConfigParser() )
+, mIRHandler     ( *new IRHandler() )
+, mIPHandler     ( *new IPHandler() )
+, mHardkeyHandler( *new HardKeyHandler() )
 , mpRooms(nullptr)
 , mCurrentRoomIdx(0)
 {
@@ -74,6 +75,7 @@ BerrymoteMain::~BerrymoteMain()
     delete &mConfigParser;
     delete &mIRHandler;
     delete &mIPHandler;
+    delete &mHardkeyHandler;
 
     if (mpRooms)
     {
@@ -81,7 +83,10 @@ BerrymoteMain::~BerrymoteMain()
     }
 }
 
-// init
+/*!
+ * \brief BerrymoteMain::init
+ * Init all the qml objects and any sub-objects
+ */
 void BerrymoteMain::init()
 {
     // init the config parser first
@@ -109,12 +114,16 @@ void BerrymoteMain::init()
             }
         }
 
-        // allocat the drawer and sub-objects
+        // allocate the drawer and sub-objects
         mpRoomDrawer = new RoomDrawer(QML_OBJ_ROOMDRAWER, mpRootObj);
         mpRoomDrawer->init();
 
+        // init the hardkwy handler
+        mHardkeyHandler.init();
+
         // connect signals/slots
         QObject::connect( mpRootObj, SIGNAL(buttonClick(int)), this, SLOT(onButtonClick(int)) );
+        QObject::connect( &mHardkeyHandler, SIGNAL(hardKeyPressed(KEYS::eKEYS)), this, SLOT(onHardKeyPressed(KEYS::eKEYS)) );
 
         // init the rooms
         initRooms();
@@ -215,6 +224,14 @@ void BerrymoteMain::onButtonClick(int btnID)
     }
 }
 
+/*!
+ * \brief BerrymoteMain::onHardKeyPressed
+ * \param key
+ */
+void BerrymoteMain::onHardKeyPressed(KEYS::eKEYS key)
+{
+    qDebug() << "pressed key " << key;
+}
 
 /*!
  * \brief BerrymoteMain::processSuperButton

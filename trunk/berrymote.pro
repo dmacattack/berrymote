@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     hw/irhandler.cpp \
     hw/iphandler.cpp \
     ui/roomstatusbar.cpp \
-    ui/roomdrawer.cpp
+    ui/roomdrawer.cpp \
+    hw/hardkeyhandler.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,7 +35,8 @@ HEADERS += \
     hw/iphandler.hpp \
     ui/roomstatusbar.hpp \
     ui/roomdrawer.hpp \
-    berrymotetypes.hpp
+    berrymotetypes.hpp \
+    hw/hardkeyhandler.hpp
 
 INCLUDEPATH +=$$PWD
 INCLUDEPATH +=$$PWD/ui
