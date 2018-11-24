@@ -10,6 +10,7 @@
 #include "irhandler.hpp"
 #include "iphandler.hpp"
 #include "hardkeyhandler.hpp"
+#include "wifihandler.hpp"
 
 class BerrymoteMain
 : public QObject
@@ -25,7 +26,11 @@ private slots:
     void onButtonClick(int btnID);
     void onHardKeyPressed(KEYS::eKEYS key);
 
+signals:
+    void setWifiCreds(QString ssid, QString pass);
+
 private:
+    void initWifi();
     void initRooms();
     void setSuperButtons(ROOM::SuperButtons &sb);
     void processSuperButton(ROOM::tSuperButton btn);
@@ -41,6 +46,7 @@ private:
     IRHandler &mIRHandler;
     IPHandler &mIPHandler;
     HardKeyHandler &mHardkeyHandler;
+    WifiHandler &mWifiHandler;
 
     BERRYMOTE::Rooms *mpRooms;
     int mCurrentRoomIdx;

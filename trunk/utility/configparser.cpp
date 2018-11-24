@@ -86,7 +86,7 @@ bool ConfigParser::getRooms(BERRYMOTE::Rooms *pRooms)
 {
     bool isOk = false;
 
-    if (pRooms != NULL)
+    if (pRooms != nullptr)
     {
         //pRooms = new ROOM::Rooms();
         QJsonArray roomArray = mpConfigFile->find(JSON_PROP_ROOMS).value().toArray();

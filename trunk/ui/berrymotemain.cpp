@@ -34,6 +34,7 @@ BerrymoteMain::BerrymoteMain(QObject *pRootObj)
 , mIRHandler     ( *new IRHandler() )
 , mIPHandler     ( *new IPHandler() )
 , mHardkeyHandler( *new HardKeyHandler() )
+, mWifiHandler   ( *new WifiHandler() )
 , mpRooms(nullptr)
 , mCurrentRoomIdx(0)
 {
@@ -76,6 +77,7 @@ BerrymoteMain::~BerrymoteMain()
     delete &mIRHandler;
     delete &mIPHandler;
     delete &mHardkeyHandler;
+    delete &mWifiHandler;
 
     if (mpRooms)
     {
@@ -124,6 +126,10 @@ void BerrymoteMain::init()
         // connect signals/slots
         QObject::connect( mpRootObj, SIGNAL(buttonClick(int)), this, SLOT(onButtonClick(int)) );
         QObject::connect( &mHardkeyHandler, SIGNAL(hardKeyPressed(KEYS::eKEYS)), this, SLOT(onHardKeyPressed(KEYS::eKEYS)) );
+        QObject::connect( this, SIGNAL(setWifiCreds(QString, QString)), &mWifiHandler, SLOT(setWifiCreds(QString, QString)) );
+
+        // init the wifi
+        initWifi();
 
         // init the rooms
         initRooms();
@@ -131,6 +137,24 @@ void BerrymoteMain::init()
     else
     {
         qCritical() << "problem with configs";
+    }
+}
+
+/*!
+ * \brief BerrymoteMain::initWifi
+ */
+void BerrymoteMain::initWifi()
+{
+    // init the wifi info
+    QString ssid = "";
+    QString pass = "";
+    if ( mConfigParser.getWifiCreds(&ssid, &pass) )
+    {
+        emit setWifiCreds(ssid, pass);
+    }
+    else
+    {
+        qCritical() << "couldn't get the wifi credentials";
     }
 }
 

@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     hw/iphandler.cpp \
     ui/roomstatusbar.cpp \
     ui/roomdrawer.cpp \
-    hw/hardkeyhandler.cpp
+    hw/hardkeyhandler.cpp \
+    wifi/wifihandler.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,12 +37,14 @@ HEADERS += \
     ui/roomstatusbar.hpp \
     ui/roomdrawer.hpp \
     berrymotetypes.hpp \
-    hw/hardkeyhandler.hpp
+    hw/hardkeyhandler.hpp \
+    wifi/wifihandler.hpp
 
 INCLUDEPATH +=$$PWD
 INCLUDEPATH +=$$PWD/ui
 INCLUDEPATH +=$$PWD/utility
 INCLUDEPATH +=$$PWD/hw
+INCLUDEPATH +=$$PWD/wifi
 
 DISTFILES += \
     berrymote.json \
