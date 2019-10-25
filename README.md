@@ -131,12 +131,18 @@ mkdir qt5build
 cd qt5build
 ../qt-everywhere-opensource-src-5.9.7/configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=arm-linux-gnueabihf- -sysroot /opt/qt5pi/sysroot -prefix /usr/local/qt5pi -opensource -confirm-license -skip qtwebengine -skip qtscript -nomake examples -make libs -v -no-icu
 ```
+
 This will take a while.
 the device can be configured to different Pi's. I'm using a Pi Zero W
 Raspberry Pi 1 (+ Zero and Zero W): -device linux-rasp-pi-g++
 Raspberry Pi 2: -device linux-rasp-pi2-g++
 Raspberry Pi 3: -device linux-rpi3-g++
 Raspberry Pi 3 with VC4 driver: -device linux-rpi3-vc4-g++
+
+If the configure script cannot find the arm-linux-gnueabihf-g++ (due to conflicts or other) update the command to the full path:
+```bash
+../qt-everywhere-opensource-src-5.9.7/configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=/opt/qt5pi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- -sysroot /opt/qt5pi/sysroot -prefix /usr/local/qt5pi -opensource -confirm-license -skip qtwebengine -skip qtscript -nomake examples -make libs -v -no-icu
+```
 
 Make 
 ```bash
